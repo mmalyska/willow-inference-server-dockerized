@@ -28,6 +28,11 @@ jobs:
         with:
           cosign-release: 'v2.1.1'
 
+      # Free space on runner
+      # https://github.com/easimon/maximize-build-space
+      - name: Maximize build disk space
+        uses: easimon/maximize-build-space@v10
+
       - name: Checkout
         uses: actions/checkout@v3
 
