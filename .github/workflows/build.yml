@@ -1,0 +1,30 @@
+name: Build WIS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**/README.md"
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_ID: ${{ github.run_number }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Export version to variable
+        run: echo "WIS_VERSION=$(cat version)" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Checkout Upstream WIS
+        uses: actions/checkout@v3
+        with:
+          repository: toverainc/willow-inference-server
+          path: wis
+          ref: ${{ env.WIS_VERSION }}
+          fetch-depth: 1
