@@ -33,7 +33,7 @@ jobs:
       - name: Maximize build disk space
         uses: easimon/maximize-build-space@v10
         with:
-          root-reserve-mb: 2048
+          root-reserve-mb: 3072
           temp-reserve-mb: 1024
 
       - name: Checkout
